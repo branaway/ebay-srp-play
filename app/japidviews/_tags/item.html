@@ -1,0 +1,39 @@
+`import utils.JsonUtils
+`import com.google.gson.JsonElement
+`args JsonElement item
+
+<a name="item{ITEM_ID_HEX}"></a>
+  <table class="li">
+    <tbody>
+      <tr>
+        <td class="pic p140 lt"><a href="#" class="x140 img">
+          `if JsonUtils.getElement(item, "galleryURL")
+            <img class="img" src='${JsonUtils.getString(item, "galleryURL.0")}' alt="Item image" /></a>
+          `
+        </td>
+
+        <td class="dtl ttl"><a href='http://cgi.ebay.com/${JsonUtils.getString(item, "title.0")}/${JsonUtils.getString(item, "itemId.0")}'
+        class="vip">${JsonUtils.getString(item, "title.0")}</a></td>
+
+        <td class="trs">
+          `if JsonUtils.getBoolean(item, "sellerInfo.0.topRatedSeller.0") 
+             <img src= "http://p.ebaystatic.com/aw/pics/icons/iconTrsXSmall.gif"
+                  alt="Get fast shipping and excellent service when you buy from eBay Top-rated sellers"
+                  height="30" width="66" />
+          `
+        </td>
+
+        `if JsonUtils.getElement(item, "sellingStatus.0.bidCount")
+            <td class="bids bin1">${JsonUtils.getString(item, "sellingStatus.0.bidCount.0")} Bids</td>
+        `else 
+            <td class="bids bin1">0 Bids</td>
+        `
+
+        <td class="prc g-b">${JsonUtils.getString(item, "sellingStatus.0.currentPrice.0.__value__")} 
+        ${JsonUtils.getString(item, "sellingStatus.0.currentPrice.0.@currencyId")} </td>
+
+        <td class="tme rt"><b class="hidlb">Time left:</b> <span class=
+        "{ALERT_OR_NOT}">${JsonUtils.getString(item, "sellingStatus.0.timeLeft.0")} </span></td>
+      </tr>
+    </tbody>
+  </table>
