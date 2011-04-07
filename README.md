@@ -20,7 +20,7 @@ bran's note on adding a Japid based front-end.
     
   The old code uses Groovy is still accessible from:
     
-    http://localhost:9000/AppJapid/index
+    http://localhost:9000/
       
 2. The sync method in both controllers used a new local cached json response to effectively eliminate the IO cost.
 3. Since Java does not provide a natural nested navigation in Json (Gson in this case) object, I have added a utility to use a simple path notation to navigate in Json object. See the JsonUtils.java.
