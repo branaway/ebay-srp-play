@@ -25,7 +25,7 @@ bran's note on adding a Japid based front-end.
 2. The sync method in both controllers used a new local cached json response to effectively eliminate the IO cost.
 3. Since Java does not provide a natural nested navigation in Json (Gson in this case) object, I have added a utility to use a simple path notation to navigate in Json object. See the JsonUtils.java.
 
-My system reported that Japid based front-end generated about 200-300% throughput of the Groovy based front-end.
+My Windows 7 system has reported that Japid based front-end generated about 200-300% throughput of the Groovy based front-end.
 
 To run the Apache benchmark tool:
 
