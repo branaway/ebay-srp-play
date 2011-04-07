@@ -4,6 +4,8 @@ import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ArrayNode;
 import org.codehaus.jackson.node.ObjectNode;
 
+
+
 public class JsonUtilsJackson {
 	/**
 	 * 
@@ -26,7 +28,45 @@ public class JsonUtilsJackson {
 	}
 	
 	public static JsonNode getElement(JsonNode json, String path) {
-		return getElement(json, convertPathStack(path));
+//		return getElement(json, convertPathStack(path));
+		return onePassGet(json, path);
+	}
+
+	public static JsonNode getElem(JsonNode json, Object... path) {
+//		return getElement(json, convertPathStack(path));
+		return getElement(json, path);
+	}
+
+	/**
+	 * @param json
+	 * @param path
+	 * @return
+	 */
+	private static JsonNode onePassGet(JsonNode json, String path) {
+		JsonNode ret = json;
+		int current = 0;
+		for (int p = 0; p < path.length(); p++) {
+			char charAt = path.charAt(p);
+			if (charAt == '.' || charAt == '/') {
+				String token = path.substring(current, p);
+				current = p + 1;
+				try {
+					int parseInt = Integer.parseInt(token);
+					ret = ((ArrayNode) ret).get(parseInt);
+				} catch (NumberFormatException e) {
+					ret = ((ObjectNode) ret).get(token);
+				}
+			}
+		}
+		// the last one
+		String token = path.substring(current);
+		try {
+			int parseInt = Integer.parseInt(token);
+			ret = ((ArrayNode) ret).get(parseInt);
+		} catch (NumberFormatException e) {
+			ret = ((ObjectNode) ret).get(token);
+		}
+		return ret;
 	}
 
 	/**

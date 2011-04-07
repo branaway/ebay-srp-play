@@ -31,8 +31,8 @@ public class JsonUtils {
 	}
 	
 	public static JsonElement getElement(JsonElement json, String path) {
-		return getElement(json, convertPathStack(path));
-//		return onePassGet(json, path);
+//		return getElement(json, convertPathStack(path));
+		return onePassGet(json, path);
 	}
 
 	/**

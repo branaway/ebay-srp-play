@@ -1,8 +1,11 @@
 package controllers;
 
+import cn.bran.japid.template.RenderResult;
 import cn.bran.play.JapidController;
 
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 import play.libs.WS;
 import play.mvc.Controller;
 import utils.Ebay;
@@ -36,7 +39,10 @@ public class AppJapid extends JapidController {
 				doSync(encoded, "true".equals(skipRender));
 			}
 		} else {
-			renderJapid((Object[])null);
+//			renderJapid((Object[])null);
+			
+// static linking is slightly faster!
+			render(new japidviews.AppJapid.index().render(null));
 		}
 	}
 
@@ -52,7 +58,9 @@ public class AppJapid extends JapidController {
 		// final JsonElement results = WS.url(url).get().getJson();
 		final JsonElement results = Ebay.getJsonLocal();
 		if (!skipPender) {
-			renderJapidWith(AppJapid.class.getSimpleName() + "/index.html", results);
+//			renderJapidWith(AppJapid.class.getSimpleName() + "/index.html", results);
+// static linking is slightly faster!
+			render(new japidviews.AppJapid.index().render((JsonObject) results));
 		}
 	}
 
