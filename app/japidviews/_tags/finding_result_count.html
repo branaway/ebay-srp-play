@@ -8,7 +8,7 @@
 		<h1 class="smuy">
 	      `if results
 			<span class="countClass">${JsonUtils.getString(results, "findItemsByKeywordsResponse.0.paginationOutput.0.totalPages.0")}</span> 
-			<span class="matchClass">results found for</span> <span class="keywordClass" id="v4-5">${request.params.get("_nkw")}</span>
+			<span class="matchClass">results found for</span> <span class="keywordClass" id="v4-5">${params.get("_nkw")}</span>
 	      `
 		</h1>
 	</span>

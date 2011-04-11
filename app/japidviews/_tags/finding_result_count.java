@@ -70,7 +70,7 @@ p("			<span class=\"countClass\">");// line 9
 p(JsonUtils.getString(results, "findItemsByKeywordsResponse.0.paginationOutput.0.totalPages.0"));// line 10
 p("</span> \n" + 
 "			<span class=\"matchClass\">results found for</span> <span class=\"keywordClass\" id=\"v4-5\">");// line 10
-p(request.params.get("_nkw"));// line 11
+p(params.get("_nkw"));// line 11
 p("</span>\n" + 
 "	      ");// line 11
 }// line 12

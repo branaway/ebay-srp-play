@@ -21,7 +21,7 @@ public class AppJapid extends JapidController {
 	private static final Logger LOGGER = Logger.getLogger("buyexp-play");
 
 	public static void index() {
-		final String query = request.params.get("_nkw");
+		final String query = params.get("_nkw");
 		if (null != query && query.length() > 0) {
 			String encoded;
 			try {
@@ -31,8 +31,8 @@ public class AppJapid extends JapidController {
 				encoded = URLEncoder.encode(query);
 			}
 
-			final String mode = request.params.get("_mode");
-			final String skipRender = request.params.get("_skiprender");
+			final String mode = params.get("_mode");
+			final String skipRender = params.get("_skiprender");
 			if ("async".equals(mode)) {
 				doAsync(encoded, "true".equals(skipRender));
 			} else {

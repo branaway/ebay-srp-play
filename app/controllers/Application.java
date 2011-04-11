@@ -17,7 +17,7 @@ public class Application extends Controller{
     private static final Logger LOGGER = Logger.getLogger("buyexp-play");
 
     public static void index() {
-        final String query = request.params.get("_nkw");
+        final String query = params.get("_nkw");
         if(null != query && query.length() > 0) {
             String encoded;
             try {
@@ -28,8 +28,8 @@ public class Application extends Controller{
                 encoded = URLEncoder.encode(query);
             }
 
-            final String mode = request.params.get("_mode");
-            final String skipRender = request.params.get("_skiprender");
+            final String mode = params.get("_mode");
+            final String skipRender = params.get("_skiprender");
             if("async".equals(mode)) {
                 doAsync(encoded, "true".equals(skipRender));
             }
@@ -71,7 +71,7 @@ public class Application extends Controller{
                 waitFor(future);
             }
             else {
-                render();
+//                render();
             }
         }
         else {
@@ -80,7 +80,7 @@ public class Application extends Controller{
                     final Future<play.libs.WS.HttpResponse> future = (Future<play.libs.WS.HttpResponse>) request.args.get("f");
                     WS.HttpResponse response = future.get();
                     final JsonElement results = response.getJson();
-                    render(results);
+//                    render(results);
                 }
                 catch(final InterruptedException ie) {
                     ie.printStackTrace();
@@ -95,6 +95,6 @@ public class Application extends Controller{
     }
 
     public static void search() {
-        render();
+//        render();
     }
 }
